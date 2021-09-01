@@ -1,29 +1,20 @@
 package masterpian0.model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column
     private String name;
-    @Column
     private String lastName;
-    @Column
     private int age;
-    @Column
     private String city;
-    @Column
     private String email;
 
-    public User(long id, String name, String lastName, int age, String city, String email) {
-        this.id = id;
+    public User(String name, String lastName, int age, String city, String email) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -121,3 +112,5 @@ public class User {
                 '}';
     }
 }
+
+

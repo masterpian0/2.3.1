@@ -1,13 +1,15 @@
 package masterpian0.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import masterpian0.model.User;
 import masterpian0.dao.UserDao;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -38,3 +40,5 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserById(id);
     }
 }
+
+

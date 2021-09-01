@@ -7,7 +7,6 @@ import masterpian0.model.User;
 import masterpian0.service.UserService;
 
 @Controller
-@RequestMapping("/")
 public class UserController {
 
     private final UserService userService;
@@ -16,8 +15,7 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    @GetMapping()
+    @GetMapping
     public String showAll(Model model) {
         model.addAttribute("users", userService.getUsers());
         return "users";
@@ -34,7 +32,7 @@ public class UserController {
         return "new";
     }
 
-    @PostMapping()
+    @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/";
@@ -52,10 +50,10 @@ public class UserController {
         return "redirect:/";
     }
 
-    //    @GetMapping("/{id}/delete")
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/";
     }
 }
+

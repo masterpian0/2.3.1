@@ -1,7 +1,6 @@
 package masterpian0.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import masterpian0.model.User;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDaoImpl implements UserDao {
 
     public UserDaoImpl() {
@@ -19,11 +17,9 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
     @Override
     public void addUser(User user) {
-        User managed = entityManager.merge(user);
-        entityManager.persist(managed);
+        entityManager.persist(user);
     }
 
     @Override
@@ -49,3 +45,5 @@ public class UserDaoImpl implements UserDao {
         return q.getResultList().stream().findAny().orElse(null);
     }
 }
+
+
