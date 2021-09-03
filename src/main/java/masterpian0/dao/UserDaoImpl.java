@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(long id, User user) {
+    public void updateUser(User user) {
         entityManager.merge(user);
     }
 
@@ -39,10 +39,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(long id) {
-        TypedQuery<User> q = entityManager.createQuery(
-                "select user from User user where user.id = :id", User.class);
-        q.setParameter("id", id);
-        return q.getResultList().stream().findAny().orElse(null);
+        return entityManager.find(User.class, id);
     }
 }
 
